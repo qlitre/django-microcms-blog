@@ -1,0 +1,14 @@
+<div style="margin-bottom:6rem;">
+  <h2 class="tag-heading">タグ一覧</h2>
+  <div class="inline">
+    {% for tag in tag_list %}
+      <span>
+        {% if tag.id == tag_id %}
+          <a href="{% url 'blog:index' %}" class="tag-badge tag-active">{{ tag.name }}</a>
+        {% else %}
+          <a href="{% url 'blog:index_with_tag' tag.id 1 %}" class="tag-badge">{{ tag.name }}</a>
+        {% endif %}
+      </span>
+    {% endfor %}
+  </div>
+</div>

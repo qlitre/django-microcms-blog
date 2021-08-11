@@ -1,0 +1,53 @@
+{% load blog %}
+
+{% if tag_id %}
+  <div class="pagination">
+    <ul>
+      {% if current_page == 1 %}
+        <span class="pagination-link prev-off"><li><</li></span>
+      {% else %}
+        <a href="{% url 'blog:index_with_tag' tag_id current_page|add:'-1'  %}" class="pagination-link"><li><</li></a>
+      {% endif %}
+
+      {% for num in num_page  %}
+        {% if num == current_page %}
+          <span class="pagination-link is-active"><li>{{ num }}</li></span>
+        {% else %}
+          <a href="{% url 'blog:index_with_tag' tag_id num %}" class="pagination-link"><li>{{ num }}</li></a>
+        {% endif %}
+      {% endfor %}
+
+      {% if current_page == last_page %}
+        <span class="pagination-link next-off"><li>></li></span>
+      {% else %}
+        <a href="{% url 'blog:index_with_tag' tag_id current_page|add:'+1'  %}" class="pagination-link"><li>></li></a>
+      {% endif %}
+    </ul>
+  </div>
+
+{% else %}
+  <div class="pagination">
+    <ul>
+      {% if current_page == 1 %}
+        <span class="pagination-link prev-off"><li><</li></span>
+      {% else %}
+        <a href="{% url 'blog:index_with_page' current_page|add:'-1'  %}" class="pagination-link"><li><</li></a>
+      {% endif %}
+
+      {% for num in num_page  %}
+        {% if num == current_page %}
+          <span class="pagination-link is-active"><li>{{ num }}</li></span>
+        {% else %}
+          <a href="{% url 'blog:index_with_page' num %}" class="pagination-link"><li>{{ num }}</li></a>
+        {% endif %}
+      {% endfor %}
+
+      {% if current_page == last_page %}
+        <span class="pagination-link next-off"><li>></li></span>
+      {% else %}
+        <a href="{% url 'blog:index_with_page' current_page|add:'+1'  %}" class="pagination-link"><li>></li></a>
+      {% endif %}
+    </ul>
+  </div>
+
+{% endif %}

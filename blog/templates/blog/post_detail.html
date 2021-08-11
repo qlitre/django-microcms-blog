@@ -1,0 +1,48 @@
+<!-- blog/templates/blog/post_detail.html -->
+
+{% extends 'blog/base.html' %}
+{% load blog %}
+{% load static %}
+{% block meta_title %}{{ post.title }} - {{ block.super }}{% endblock %}
+{% block meta_description %}{{ post.description }}{% endblock %}
+{% block meta_keywords %}{{ post.keywords }}{% endblock %}
+
+{% block content %}
+
+<div class="container" style="padding-top:112px;">
+  <article class="post">
+    {% if post.thumbnail %}
+      <img class="post-thumbnail" src="{{ post.thumbnail.url }}" alt="{{ post.title }}" style="margin-bottom:20px;">
+    {% endif %}
+    {% if post.tag %}
+      <div style="margin-bottom:10px;">
+          {% for tag in post.tag|sorted_post_tag %}
+            <span class="post-tag" style="margin-left:3px;">{{ tag.name }}</span>
+            {% if not forloop.last %}
+              <span style="margin:0 3px; color:#888">/</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+    {% endif %}
+    <p class="created-at">{{ post.createdAt | date_from_isoformat }}</p>
+    <h1 class="post-title">
+      {{ post.title }}
+    </h1>
+    <div class="markdown-body">
+      {% autoescape off %}
+      {{ post.text }}
+      {% endautoescape %}
+    </div>
+  </article>
+</div>
+
+
+{% endblock %}
+
+{% block extrajs %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/hybrid.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+</script>
+{% endblock %}

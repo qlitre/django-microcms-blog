@@ -1,0 +1,383 @@
+/* blog/static/css/style.css */
+@charset "UTF-8";
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: #333;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: #333;
+  text-decoration: none;
+}
+
+/* --------------------------------
+ * ヘッダー
+ * -------------------------------- */
+.header {
+  padding: 30px 4% 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+a.page-title {
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  color: #888;
+}
+
+.main-nav {
+  list-style: none;
+  margin: 0;
+  display: flex;
+}
+
+.main-nav li {
+  margin: 0 0 0 15px;
+  font-size: 14px;
+}
+
+.main-nav a {
+  color: #888;
+}
+
+.main-nav a:hover {
+  opacity: 0.6;
+}
+
+/* --------------------------------
+ * コンテナ
+ * -------------------------------- */
+.container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 0;
+  color: #0d1a3c;
+  padding-right: 4%;
+  padding-left: 4%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 760px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* --------------------------------
+ * 検索タグ
+ * -------------------------------- */
+.tag-heading {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.inline {
+  margin: 10px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+
+.inline::-webkit-scrollbar {
+  width: 10px;
+}
+
+.inline::-webkit-scrollbar-track {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 2px #777;
+}
+
+.inline::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.tag-badge {
+  display: inline-block;
+  border-radius: 4px;
+  text-align: center;
+  border: solid 1px #ccc;
+  padding: 4px 16px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  margin: 3px;
+  letter-spacing: 1.5px;
+}
+
+.tag-badge:hover {
+  background-color: #888;
+  color: #fff;
+  opacity: .6;
+}
+
+a.tag-active {
+  background-color: #888;
+  color: #fff;
+}
+
+/* --------------------------------
+ * 記事一覧
+ * -------------------------------- */
+.article {
+  margin-bottom: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumbnail {
+  width: 40%;
+}
+
+.detail {
+  width: 55%;
+  position: relative;
+}
+
+.tag {
+  position: absolute;
+  bottom: 0;
+}
+
+.created-at {
+  font-size: 1.4rem;
+  color: 888;
+}
+
+.post-title {
+  font-size: 2.0rem;
+  color: #0d1a3c;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+.post-description {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #0d1a3c;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+.post-tag {
+  font-size: 1.2rem;
+  color: 888;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+.post-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+/* 完全に縦に並べる */
+@media(max-width:768px) {
+  .article {
+    flex-direction: column;
+  }
+
+  .thumbnail {
+    width: 100%;
+  }
+
+  .detail {
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 0;
+  }
+
+  .tag {
+    margin-top: 10px;
+    position: relative;
+  }
+}
+
+/* 横並びだけど、記事部分がせまくなる。
+そのため、文字が被る可能性があるので、タグ部分のbottom配置を解除 */
+@media(max-width:992px) {
+  .tag {
+    margin-top: 10px;
+    position: relative;
+  }
+}
+
+/* --------------------------------
+ * ページネーション
+ * -------------------------------- */
+.pagination {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.pagination ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.prev-off,
+.next-off {
+  opacity: .2;
+}
+
+.pagination .pagination-link {
+  display: inline-block;
+  font-size: 2rem;
+  padding: 10px 18px;
+  color: #888;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
+}
+
+.pagination .is-active {
+  background-color: #888;
+  border-radius: 100%;
+  color: #fff;
+}
+
+/* --------------------------------
+ * 記事詳細
+ * -------------------------------- */
+.markdown-body {
+  margin-top: 5rem;
+}
+
+.markdown-body * {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  line-height: 2.0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体". "ヒラギノ角ゴ", "ヒラギノ角ゴ Pro W3", sans-serif;
+}
+
+.markdown-body strong {
+  background-color: yellow;
+}
+
+.markdown-body img {
+  display: block;
+  max-width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: auto;
+  border: solid 1px #ccc;
+}
+
+.markdown-body p code {
+  background-color: #eee;
+  color: #333;
+  padding: 0.2em 0.4em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.markdown-body pre {
+  line-height: 1.2;
+  background-color: #1D1F21;
+  padding: 2% 4%;
+  overflow-x: scroll;
+}
+
+.markdown-body pre * {
+  margin-bottom: 0;
+}
+
+.markdown-body blockquote {
+  padding: 15px;
+  border-left: 5px solid #ccc;
+  border-radius: 2px;
+}
+
+.markdown-body h1 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.markdown-body h2,
+.markdown-body h3 {
+  font-size: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.markdown-body .cp_embed_wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.markdown-body a {
+  color: #00809d;
+}
+
+.markdown-body a:hover {
+  opacity: .5;
+}
+
+.markdown-body th {
+  font-weight: bold;
+  background-color: #3aacad;
+  color: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 8px 10px;
+}
+
+.markdown-body td {
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  padding: 8px 10px;
+  max-width: 600px;
+}
+
+.markdown-body tbody tr {
+  background-color: #FAFAFA;
+}

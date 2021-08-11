@@ -1,0 +1,24 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{% block meta_keywords %}Django,microCMS,ブログ{% endblock %}">
+    <meta name="description" content="{% block meta_description %}DjangoとmicroCMSで作ったブログです{% endblock %}">
+    <title>{% block meta_title %}Django microCMS Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body>
+{% include "blog/components/layout-header.html" %}
+{% block content %}{% endblock %}
+
+{% block extrajs %}{% endblock %}
+</body>
+
+</html>
